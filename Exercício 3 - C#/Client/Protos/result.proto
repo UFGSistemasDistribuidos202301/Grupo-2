@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcClient";
+
+package result;
+
+service Result {
+  rpc CalculatePartial (ResultRequest) returns (ResultResponse);
+  rpc CalculateFinal (ResultRequest) returns (ResultResponse);
+}
+
+enum Status {
+  REPROVED = 0;
+  APPROVED = 1;
+  NEEDS_THIRD_GRADE = 2;
+}
+
+message Grades {
+  float firstGrade = 1;
+  float secondGrade = 2;
+}
+
+message ResultRequest {
+  Grades grades = 1;
+}
+
+message ResultResponse {
+  float finalGrade = 1;
+  Status status = 2;
+}
