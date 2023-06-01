@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLib", "Data\DataLib.csproj", "{21CB39B6-EE56-461F-B00E-69BA87BB6F1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{6E6F754D-A6A5-4BB7-8934-46840A402B2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{C76C18A7-A1C7-4713-9DC4-DCA8D210683E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21CB39B6-EE56-461F-B00E-69BA87BB6F1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21CB39B6-EE56-461F-B00E-69BA87BB6F1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21CB39B6-EE56-461F-B00E-69BA87BB6F1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21CB39B6-EE56-461F-B00E-69BA87BB6F1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E6F754D-A6A5-4BB7-8934-46840A402B2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E6F754D-A6A5-4BB7-8934-46840A402B2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E6F754D-A6A5-4BB7-8934-46840A402B2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E6F754D-A6A5-4BB7-8934-46840A402B2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C76C18A7-A1C7-4713-9DC4-DCA8D210683E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C76C18A7-A1C7-4713-9DC4-DCA8D210683E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C76C18A7-A1C7-4713-9DC4-DCA8D210683E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C76C18A7-A1C7-4713-9DC4-DCA8D210683E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{21CB39B6-EE56-461F-B00E-69BA87BB6F1D} = {BB107CDB-CD7C-45F3-8653-57F0A20E40AE}
+	EndGlobalSection
+EndGlobal
