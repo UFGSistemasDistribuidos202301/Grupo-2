@@ -17,7 +17,7 @@ public class Client {
 
         scanner.close();
         try {
-            Registry registry = LocateRegistry.getRegistry("localhost", 506);
+            Registry registry = LocateRegistry.getRegistry("rmi-server", 506);
             ICardService cardService = (ICardService) registry.lookup("CardService");
 
             String cardName = cardService.getCardName(suitNumber, rankNumber);
