@@ -1,0 +1,21 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "java",
+			"name": "RMI Server",
+			"request": "launch",
+			"mainClass": "Server.Server",
+			"projectName": "Server",
+			"args": []
+		},
+		{
+			"type": "java",
+			"name": "RMI Client",
+			"request": "launch",
+			"mainClass": "Client.Client",
+			"projectName": "Client",
+			"args": []
+		}
+	]
+}
