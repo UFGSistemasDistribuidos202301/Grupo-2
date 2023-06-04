@@ -1,10 +1,6 @@
-package Client;
-
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
-
-import Shared.ICardService;
 
 public class Client {
     public static void main(String[] args) {

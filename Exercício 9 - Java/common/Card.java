@@ -1,5 +1,3 @@
-package Shared;
-
 public class Card {
 	public Suit suit;
 	public Rank rank;

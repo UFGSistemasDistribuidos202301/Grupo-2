@@ -1,9 +1,4 @@
-package Server;
-
 import java.rmi.registry.Registry;
-
-import Shared.ICardService;
-import Shared.CardService;
 
 import java.rmi.registry.LocateRegistry;
 

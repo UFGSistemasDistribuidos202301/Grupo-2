@@ -1,5 +1,3 @@
-package Shared;
-
 public enum Suit {
 	DIAMONDS(1, "Ouros"),
 	CLUBS(2, "Paus"),

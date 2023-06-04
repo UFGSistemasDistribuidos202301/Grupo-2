@@ -1,5 +1,3 @@
-package Shared;
-
 public enum Rank {
 	ACE(1, "Ás"),
 	TWO(2, "Dois"),
