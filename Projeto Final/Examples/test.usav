@@ -1,0 +1,17 @@
+id = 'a410d7c3-9efb-416e-ba47-22a569554a6a',
+user-id = '991a7d20-aefc-461c-8c84-6cd7d7e3f82a',
+game-id = 'cd867ab2-4b30-48c9-ae0f-6456279705d2',
+timestamp = '2023-07-17 01:32:09Z',
+additional-content = [
+	{
+		id = 'AdditionalContent',
+		accessed = true
+	},
+	{
+		id = 'AdditionalContent',
+		accessed = false
+	}
+],
+data = {
+	test = 1
+}
