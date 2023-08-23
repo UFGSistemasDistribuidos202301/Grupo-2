@@ -1,4 +1,7 @@
+using System.IO.Compression;
 using Microsoft.AspNetCore.Mvc;
+using SaveVault.Models;
+using SaveVault.Services;
 
 namespace SaveVault.Controllers;
 
@@ -25,59 +28,91 @@ public class DownloadController : ControllerBase
 		_conversionService = conversionService;
 	}
 
-	// [HttpGet("GetAll")]
-	// public IActionResult GetAll(Platform targetPlatform, Guid gameId, Guid userId)
-	// {
-	// 	try
-	// 	{
-	// 		var user = _userService.GetById(userId);
-	// 		var game = _gameService.GetById(gameId);
-	// 		var saves = _downloadService.GetAllSaves(game, user);
-	// 		var convertedSaves = _conversionService.ConvertAll<ISave, ISave>(saves);
+	[HttpPost("Latest")]
+	public async Task<IActionResult> GetLatest([FromBody] QueryDto query)
+	{
+		try
+		{
+			User user = _userService.GetById(query.UserId);
+			Game game = await _gameService.GetById(query.GameId);
 
-	// 		return Ok(convertedSaves);
-	// 	}
-	// 	catch (Exception exception)
-	// 	{
-	// 		return BadRequest(exception);
-	// 	}
-	// }
+			UniversalSave save = (UniversalSave)await _downloadService.DownloadLatest(game, user);
+
+			if (save == null)
+			{
+				return NotFound();
+			}
+
+			PlatformSave platformSave = _conversionService.Convert(save, query.TargetPlatform);
+			SVFile file = _downloadService.CreatePlatformFile(platformSave.Id.ToString(), platformSave.ToFileString());
+			return File(file.Content, file.Type, file.Name);
+		}
+		catch (Exception exception)
+		{
+			return BadRequest(exception);
+		}
+	}
+
+	[HttpPost("All")]
+	public async Task<IActionResult> GetAll([FromBody] QueryDto query)
+	{
+		try
+		{
+			User user = _userService.GetById(query.UserId);
+			Game game = await _gameService.GetById(query.GameId);
+
+			IEnumerable<UniversalSave> saves = (await _downloadService.DownloadAllSaves(game, user))
+				.Select(s => (UniversalSave)s);
+
+			if (!saves.Any())
+			{
+				return NotFound();
+			}
+
+			using MemoryStream outputStream = new();
+			using ZipArchive archive = new(outputStream, ZipArchiveMode.Create, true);
+
+			foreach (UniversalSave save in saves)
+			{
+				PlatformSave platformSave = _conversionService.Convert(save, query.TargetPlatform);
+				SVFile file = _downloadService.CreatePlatformFile(platformSave.Id.ToString(), platformSave.ToFileString());
+
+				ZipArchiveEntry entry = archive.CreateEntry(file.Name);
+				using var fileStream = new MemoryStream(file.Content);
+				using var entryStream = entry.Open();
+				fileStream.CopyTo(entryStream);
+			}
+
+			archive.Dispose();
+
+			return File(outputStream.ToArray(), "application/zip", "saves.zip");
+		}
+		catch (Exception exception)
+		{
+			return BadRequest(exception);
+		}
+	}
 
 
-	// [HttpGet("GetById")]
-	// public IActionResult GetById(Platform targetPlatform, Guid saveId, Guid userId)
-	// {
-	// 	try
-	// 	{
-	// 		var user = _userService.GetById(userId);
-	// 		var save = _downloadService.GetById(saveId, user);
+	[HttpPost("ById")]
+	public async Task<IActionResult> ById([FromBody] QueryDto query)
+	{
+		try
+		{
+			UniversalSave save = (UniversalSave)await _downloadService.DownloadById(query.SaveId);
 
-	// 		PCSave targetSave;
-	// 		var convertedSave = _conversionService.Convert(save, out targetSave);
+			if (save == null)
+			{
+				return NotFound();
+			}
 
-	// 		return Ok(convertedSave);
-	// 	}
-	// 	catch (Exception exception)
-	// 	{
-	// 		return BadRequest(exception);
-	// 	}
-	// }
-
-	// [HttpGet("GetLatest")]
-	// public IActionResult GetLatest(Platform targetPlatform, Guid gameId, Guid userId)
-	// {
-	// 	try
-	// 	{
-	// 		var user = _userService.GetById(userId);
-	// 		var game = _gameService.GetById(gameId);
-	// 		var save = _downloadService.GetLatest(game, user);
-	// 		var convertedSave = _conversionService.Convert<ISave, ISave>(save);
-
-	// 		return Ok(convertedSave);
-	// 	}
-	// 	catch (Exception exception)
-	// 	{
-	// 		return BadRequest(exception);
-	// 	}
-	// }
+			PlatformSave platformSave = _conversionService.Convert(save, query.TargetPlatform);
+			SVFile file = _downloadService.CreatePlatformFile(platformSave.Id.ToString(), platformSave.ToFileString());
+			return File(file.Content, file.Type, file.Name);
+		}
+		catch (Exception exception)
+		{
+			return BadRequest(exception);
+		}
+	}
 }

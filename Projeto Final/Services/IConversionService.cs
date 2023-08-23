@@ -1,12 +1,11 @@
+using SaveVault.Models;
+
+namespace SaveVault.Services;
+
 public interface IConversionService
 {
-	U Convert<T, U>(T save)
-		where T : ISave
-		where U : ISave;
-
-	// IEnumerable<U> ConvertAll<T, U>(IEnumerable<T> saves)
-	// 	where T : ISave
-	// 	where U : ISave;
-
-	T ConvertFromFile<T>(IFormFile file) where T : ISave;
+	UniversalSave Convert(PlatformSave save);
+	PlatformSave Convert(UniversalSave save, Platform platform);
+	Task<T> ConvertFromFile<T>(IFormFile file) where T : ISave;
+	Task<T> ConvertFromFile<T>(MemoryStream file) where T : ISave;
 }

@@ -1,0 +1,11 @@
+id = '4cce9c24-8a69-4b2d-8da2-0bb53559cedb',
+user-id = '991a7d20-aefc-461c-8c84-6cd7d7e3f82a',
+game-id = 'cd867ab2-4b30-48c9-ae0f-6456279705d2',
+platform = 'PC',
+timestamp = '2023-08-23T17:55:57Z',
+additional-content = [
+	'23815979-e9c5-45df-9aa3-d8acd219996b'
+],
+data = {
+	mainPlayerName = 'Player'
+}

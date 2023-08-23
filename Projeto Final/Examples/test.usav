@@ -1,14 +1,14 @@
-id = 'a410d7c3-9efb-416e-ba47-22a569554a6a',
+id = 'fb9dc0cb-2e01-4268-baa7-87b74f5b7c09',
 user-id = '991a7d20-aefc-461c-8c84-6cd7d7e3f82a',
 game-id = 'cd867ab2-4b30-48c9-ae0f-6456279705d2',
 timestamp = '2023-07-17 01:32:09Z',
 additional-content = [
 	{
-		id = 'AdditionalContent',
+		id = '23815979-e9c5-45df-9aa3-d8acd219996b',
 		accessed = true
 	},
 	{
-		id = 'AdditionalContent',
+		id = 'd1d5de9a-72b7-4ff8-9cf0-dbc743f39f33',
 		accessed = false
 	}
 ],

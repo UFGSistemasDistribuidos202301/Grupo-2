@@ -1,3 +1,5 @@
+namespace SaveVault.Models;
+
 public interface ISave
 {
 	Guid Id { get; set; }

@@ -1,4 +1,3 @@
-public class AdditionalContent
-{
-	public Guid Id { get; set; }
-}
+namespace SaveVault.Models;
+
+public record AdditionalContent(Guid Id);

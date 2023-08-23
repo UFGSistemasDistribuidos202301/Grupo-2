@@ -1,0 +1,8 @@
+user-id = '991a7d20-aefc-461c-8c84-6cd7d7e3f82a',
+game-id = 'cd867ab2-4b30-48c9-ae0f-6456279705d2',
+platform = 'Android',
+timestamp = '2023-07-17T08:32:09Z',
+accessed-content = ['23815979-e9c5-45df-9aa3-d8acd219996b'],
+data = {
+	test = 1
+}

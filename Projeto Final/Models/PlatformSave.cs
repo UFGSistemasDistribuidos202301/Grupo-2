@@ -1,20 +1,42 @@
-public class PlatformSave : ISave
+using System.Text;
+
+namespace SaveVault.Models;
+
+public class PlatformSave : AbstractSave
 {
-	public PlatformSave(Game game, User user, PlatformData platform, DateTime timestamp, List<Guid> accessedContent, dynamic data, Guid? id = null)
+	public PlatformSave() : base() { }
+
+	public PlatformSave(
+		Game game,
+		User user,
+		PlatformData platform,
+		DateTime timestamp,
+		List<Guid> accessedContent,
+		dynamic data,
+		Guid? id = null
+	) : base(game, user, timestamp, (object)data, id)
 	{
-		Game = game;
-		User = user;
 		Platform = platform;
-		Timestamp = timestamp;
 		AccessedContent = accessedContent;
-		Data = data;
-		Id = id ?? Guid.NewGuid();
 	}
-	public Guid Id { get; set; }
+
 	public PlatformData Platform { get; set; }
-	public Game Game { get; set; }
-	public User User { get; set; }
-	public DateTime Timestamp { get; set; }
 	public List<Guid> AccessedContent { get; set; }
-	public dynamic Data { get; set; }
+
+	protected override void AppendAdditionalContent(StringBuilder builder)
+	{
+		foreach (Guid additionalContent in AccessedContent)
+		{
+			builder.Append($"\t'{additionalContent}'");
+			if (additionalContent != AccessedContent.Last())
+			{
+				builder.Append($",\n");
+			}
+		}
+	}
+
+	protected override void AppendPlatform(StringBuilder builder)
+	{
+		builder.Append($"platform = '{Platform.Name}',\n");
+	}
 }

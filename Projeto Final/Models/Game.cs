@@ -1,5 +1,6 @@
-public class Game
+namespace SaveVault.Models;
+
+public record Game(Guid Id)
 {
-	public Guid Id { get; set; }
 	public List<AdditionalContent> AdditionalContents { get; set; } = new List<AdditionalContent>();
 }
